@@ -1,32 +1,33 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>YTMP3 Downloader</title>
-  <link rel="stylesheet" href="css/styles.css" />
-</head>
-<body>
-  <div class="container">
-    <h1>YouTube to MP3</h1>
-    <p>Enter the URL of the YouTube video you want to convert:</p>
-    <input type="text" id="urlInput" placeholder="Paste YouTube URL here">
-    <button id="downloadBtn">Download MP3</button>
-    <p id="status"></p>
-  </div>
+<script>
+  const btn = document.getElementById('downloadBtn');
+  const statusText = document.getElementById('status');
 
-  <script>
-    const btn = document.getElementById('downloadBtn');
-    btn.addEventListener('click', () => {
-      const url = document.getElementById('urlInput').value.trim();
-      if (!url) {
-        document.getElementById('status').innerText = 'Please enter a valid URL.';
-        return;
-      }
-      const encodedURL = encodeURIComponent(url);
-      const apiURL = `https://ytmp3.herokuapp.com/mp3/${encodedURL}`;
+  btn.addEventListener('click', () => {
+    const url = document.getElementById('urlInput').value.trim();
+
+    // Temel geçerli URL kontrolü
+    const youtubeRegex = /^(https?\:\/\/)?(www\.youtube\.com|youtu\.?be)\/.+$/;
+
+    if (!url) {
+      statusText.style.color = "red";
+      statusText.innerText = 'Please enter a YouTube URL.';
+      return;
+    }
+
+    if (!youtubeRegex.test(url)) {
+      statusText.style.color = "red";
+      statusText.innerText = 'Invalid YouTube URL.';
+      return;
+    }
+
+    statusText.style.color = "green";
+    statusText.innerText = 'Redirecting to download...';
+
+    const encodedURL = encodeURIComponent(url);
+    const apiURL = `https://ytmp3.herokuapp.com/mp3/${encodedURL}`;
+    setTimeout(() => {
       window.open(apiURL, '_blank');
-    });
-  </script>
-</body>
-</html>
+      statusText.innerText = '';
+    }, 1000);
+  });
+</script>
