@@ -2,43 +2,50 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <meta name="description" content="Fast and free YouTube to MP3 downloader. Convert and download your favorite YouTube videos to high-quality MP3 audio files instantly."/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Convert YouTube videos to MP3 quickly and easily. Fast, free, and secure online YouTube to MP3 converter. No registration required.">
   <title>YouTube to MP3 Converter</title>
   <link rel="stylesheet" href="css/styles.css" />
 </head>
 <body>
   <div class="container">
-    <h1>YouTube to MP3 Converter</h1>
-    <p>Paste a YouTube URL and click the button below to download the audio as an MP3.</p>
-    <input type="text" id="youtube-url" placeholder="Enter YouTube URL">
-    <button onclick="downloadMP3()">Download MP3</button>
-    <div id="status" class="status"></div>
+    <h1 style="font-size: 36px; font-weight: bold; color: #ff5500; text-shadow: 2px 2px 4px rgba(0,0,0,0.3); margin-bottom: 20px;">
+      Download <span style="color: #000; font-size: 42px; text-decoration: underline;">MP3</span> from YouTube Instantly
+    </h1>
+
+    <p>Paste your YouTube URL below to convert it to MP3:</p>
+
+    <input type="text" id="urlInput" placeholder="Enter YouTube URL" />
+    <button onclick="downloadMp3()">Download MP3</button>
+
+    <div id="status" class="hidden">
+      <p class="loading-text">Processing...</p>
+    </div>
+
+    <footer>
+      <p class="seo-text">
+        Convert YouTube videos to MP3 with our fast, free, and secure YouTube to MP3 converter. No registration needed. Download your favorite songs instantly.
+      </p>
+    </footer>
   </div>
 
-  <!-- SEO description section at bottom -->
-  <footer class="seo-footer">
-    <p>
-      Instantly convert and download YouTube videos to high-quality MP3 files for free. Our lightning-fast YouTube to MP3 converter supports all devices and provides unlimited conversions with no registration needed. Safe, secure, and easy to use — start downloading your favorite music now!
-    </p>
-  </footer>
-
   <script>
-    function downloadMP3() {
-      const url = document.getElementById("youtube-url").value.trim();
-      const statusDiv = document.getElementById("status");
+    function downloadMp3() {
+      const url = document.getElementById("urlInput").value.trim();
       if (!url) {
-        statusDiv.textContent = "Please enter a valid YouTube URL.";
-        statusDiv.classList.add("error");
+        alert("Please enter a YouTube URL.");
         return;
       }
 
-      statusDiv.classList.remove("error");
-      statusDiv.textContent = "Converting... Please wait.";
+      const status = document.getElementById("status");
+      status.classList.remove("hidden");
 
-      const downloadLink = `https://ytmp3.herokuapp.com/mp3/${encodeURIComponent(url)}`;
+      const baseUrl = "https://ytmp3.herokuapp.com/mp3/";
+      const finalUrl = baseUrl + encodeURIComponent(url);
+
       setTimeout(() => {
-        window.location.href = downloadLink;
+        window.location.href = finalUrl;
+        status.classList.add("hidden");
       }, 1500);
     }
   </script>
