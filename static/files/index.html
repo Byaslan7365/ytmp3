@@ -1,30 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>YouTube to MP3 Downloader</title>
-  <link rel="stylesheet" href="css/styles.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>YTMP3 Downloader</title>
+  <link rel="stylesheet" href="css/styles.css" />
 </head>
 <body>
   <div class="container">
     <h1>YouTube to MP3</h1>
-    <input type="text" id="youtubeUrl" placeholder="Enter YouTube URL">
-    <button onclick="getDownload()">Download MP3</button>
-    <div id="result"></div>
+    <p>Enter the URL of the YouTube video you want to convert:</p>
+    <input type="text" id="urlInput" placeholder="Paste YouTube URL here">
+    <button id="downloadBtn">Download MP3</button>
+    <p id="status"></p>
   </div>
 
   <script>
-    function getDownload() {
-      const url = document.getElementById("youtubeUrl").value.trim();
+    const btn = document.getElementById('downloadBtn');
+    btn.addEventListener('click', () => {
+      const url = document.getElementById('urlInput').value.trim();
       if (!url) {
-        alert("Please enter a valid YouTube URL.");
+        document.getElementById('status').innerText = 'Please enter a valid URL.';
         return;
       }
-      const encodedUrl = encodeURIComponent(url);
-      const resultDiv = document.getElementById("result");
-      resultDiv.innerHTML = `<iframe style="width:100%;height:60px;border:none;" src="https://api.vevioz.com/api/button/mp3/${encodedUrl}"></iframe>`;
-    }
+      const encodedURL = encodeURIComponent(url);
+      const apiURL = `https://ytmp3.herokuapp.com/mp3/${encodedURL}`;
+      window.open(apiURL, '_blank');
+    });
   </script>
 </body>
 </html>
