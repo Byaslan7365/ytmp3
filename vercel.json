@@ -1,3 +1,5 @@
 {
-  "public": "static/files"
+  "rewrites": [
+    { "source": "/", "destination": "/static/files/index.html" }
+  ]
 }
