@@ -6,7 +6,7 @@
   <meta name="description" content="Convert YouTube videos to MP3 quickly and easily. Fast, free, and secure online YouTube to MP3 converter. No registration required.">
   <title>YouTube to MP3 Converter</title>
   <link rel="stylesheet" href="css/styles.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet"> <!-- Modern font -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
   <style>
     body {
       font-family: 'Roboto', sans-serif;
@@ -18,14 +18,45 @@
       margin-bottom: 20px;
     }
     .highlight-title .mp3 {
-      color: #007BFF; /* mavi */
+      color: #007BFF;
       font-size: 42px;
     }
     .highlight-title .youtube {
-      color: #FF0000; /* kırmızı */
+      color: #FF0000;
     }
     .highlight-title .black {
       color: #000;
+    }
+    #status {
+      margin-top: 20px;
+    }
+    #status .loading-text {
+      color: #555;
+      font-weight: bold;
+      animation: fade 1.5s infinite;
+    }
+    @keyframes fade {
+      0% { opacity: 0.2; }
+      50% { opacity: 1; }
+      100% { opacity: 0.2; }
+    }
+    footer, .seo-section {
+      margin-top: 50px;
+      padding: 20px;
+      background-color: #f7f7f7;
+      border-top: 1px solid #ddd;
+    }
+    .seo-section h2 {
+      font-size: 24px;
+      margin-bottom: 10px;
+    }
+    .seo-section p, .seo-section li {
+      font-size: 16px;
+      line-height: 1.6;
+      color: #333;
+    }
+    .seo-section ul {
+      margin: 10px 0 20px 20px;
     }
   </style>
 </head>
@@ -48,11 +79,30 @@
       <p class="loading-text">Processing...</p>
     </div>
 
-    <footer>
-      <p class="seo-text">
-        Convert YouTube videos to MP3 with our fast, free, and secure YouTube to MP3 converter. No registration needed. Download your favorite songs instantly.
-      </p>
-    </footer>
+    <section class="seo-section">
+      <h2>Looking for a reliable YouTube to MP3 converter?</h2>
+      <p>Our free online tool allows you to effortlessly convert YouTube videos into high-quality MP3 files. Whether you're aiming to download music, podcasts, or any audio content, our service ensures a seamless experience without the need for registration or software installation.</p>
+
+      <h3>Key Features:</h3>
+      <ul>
+        <li><strong>Unlimited Conversions:</strong> Convert as many YouTube videos as you like.</li>
+        <li><strong>High-Quality Audio:</strong> Download MP3 files in various bitrates, including 128kbps and 320kbps.</li>
+        <li><strong>User-Friendly Interface:</strong> Simple and intuitive design for easy navigation.</li>
+        <li><strong>No Sign-Up Required:</strong> Access all features without creating an account.</li>
+        <li><strong>Compatible Across Devices:</strong> Works smoothly on desktops, tablets, and mobile phones.</li>
+      </ul>
+
+      <h3>How to Use:</h3>
+      <ol>
+        <li>Paste the YouTube video URL into the input field.</li>
+        <li>Click the "Download MP3" button.</li>
+        <li>Your MP3 file will be ready for download in moments.</li>
+      </ol>
+
+      <p><strong>Popular Keywords:</strong> YouTube MP3 converter, free MP3 downloader, convert YouTube to MP3, online audio converter, high-quality MP3 download, YouTube audio extractor, fast MP3 converter.</p>
+
+      <p>Experience the convenience of downloading your favorite YouTube content in MP3 format today!</p>
+    </section>
   </div>
 
   <script>
