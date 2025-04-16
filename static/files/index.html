@@ -13,10 +13,13 @@
     
     <form id="downloadForm">
       <input type="text" id="youtubeUrl" placeholder="Enter YouTube URL" required />
-      <button type="submit">Download MP3</button>
+      <button type="submit" id="downloadBtn">Download MP3</button>
     </form>
     
-    <div id="status"></div>
+    <div id="status" class="hidden">
+      <div class="loader"></div>
+      <span>Preparing your download...</span>
+    </div>
   </div>
 
   <script>
@@ -26,19 +29,19 @@
       const status = document.getElementById("status");
 
       if (!url) {
-        status.textContent = "Please enter a valid URL.";
+        alert("Please enter a valid YouTube URL.");
         return;
       }
 
-      status.className = "loading";
+      status.classList.remove("hidden");
 
       const encodedUrl = encodeURIComponent(url);
       const downloadLink = `https://ytmp3.herokuapp.com/mp3/${encodedUrl}`;
 
       setTimeout(() => {
-        status.className = "";
+        status.classList.add("hidden");
         window.open(downloadLink, "_blank");
-      }, 1500);
+      }, 2500);
     });
   </script>
 </body>
