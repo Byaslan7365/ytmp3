@@ -1,32 +1,25 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <title>Youtube to mp3</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ytmp3downloader</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
-<body style="padding: 20px; font-family: courier;">
-  <h3>YouTube to mp3</h3></br>
-  <p>
-    Prepend a YouTube URL or YouTube video ID to:
-  </p>
-  <p>
-    <b>https://ytmp3.herokuapp.com/mp3/{ID or URL}</b>
-  </p>
-  <p>
-    For example:
-  </p>
-  <p>
-    <a id="idlink"></a></br>
-    or</br>
-    <a id="fulllink"></a></br>
-  </p>
-  <script type="text/javascript">
-  var base = location.origin + "/mp3/";
-  var id = base + "dQw4w9WgXcQ";
-  var url = base + "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+<body>
+  <div class="container">
+    <h1>YouTube to MP3 Converter</h1>
+    <p>Convert YouTube videos to MP3 for free</p>
+    <form id="convert-form">
+      <input type="text" id="youtube-url" placeholder="Paste YouTube URL here" required />
+      <button type="submit">Convert</button>
+    </form>
+    <div id="result"></div>
+  </div>
+  <footer>
+    <p>ytmp3downloader © 2025</p>
+  </footer>
 
-  idlink.setAttribute("href", id);
-  idlink.innerHTML = id;
-  fulllink.setAttribute("href", url);
-  fulllink.innerHTML = url;
-  </script>
+  <script src="script.js"></script>
 </body>
 </html>
