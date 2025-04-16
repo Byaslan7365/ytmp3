@@ -3,23 +3,39 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ytmp3downloader</title>
-  <link rel="stylesheet" href="style.css" />
+  <title>YTMP3 Downloader</title>
+  <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
   <div class="container">
-    <h1>YouTube to MP3 Converter</h1>
-    <p>Convert YouTube videos to MP3 for free</p>
-    <form id="convert-form">
-      <input type="text" id="youtube-url" placeholder="Paste YouTube URL here" required />
-      <button type="submit">Convert</button>
+    <h1>YouTube to MP3 Downloader</h1>
+    <p>Paste a YouTube link below and convert it to MP3 instantly.</p>
+    <form id="downloadForm">
+      <input type="text" id="youtubeUrl" placeholder="Enter YouTube URL" required />
+      <button type="submit">Download MP3</button>
     </form>
-    <div id="result"></div>
+    <div id="responseMessage"></div>
   </div>
-  <footer>
-    <p>ytmp3downloader © 2025</p>
-  </footer>
 
-  <script src="script.js"></script>
+  <script>
+    const form = document.getElementById("downloadForm");
+    form.addEventListener("submit", async function (e) {
+      e.preventDefault();
+      const url = document.getElementById("youtubeUrl").value;
+      const responseDiv = document.getElementById("responseMessage");
+      responseDiv.innerHTML = "Processing...";
+
+      try {
+        const id = encodeURIComponent(url);
+        const link = `https://ytmp3.herokuapp.com/mp3/${id}`;
+        responseDiv.innerHTML = `
+          <p>Your download is ready:</p>
+          <a href="${link}" target="_blank">Click here to download</a>
+        `;
+      } catch (err) {
+        responseDiv.innerHTML = "An error occurred. Please try again.";
+      }
+    });
+  </script>
 </body>
 </html>
