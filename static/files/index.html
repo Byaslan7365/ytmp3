@@ -14,19 +14,24 @@
       padding: 0;
       display: flex;
       justify-content: center;
+      background-color: #f0f2f5;
     }
 
     .container {
       max-width: 800px;
-      padding: 20px;
+      padding: 40px 20px;
       text-align: center;
+      background-color: #fff;
+      margin-top: 40px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+      border-radius: 12px;
     }
 
     .highlight-title {
       font-size: 36px;
       font-weight: bold;
-      text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
       margin-bottom: 20px;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
     }
 
     .highlight-title .mp3 {
@@ -43,22 +48,30 @@
     }
 
     input[type="text"] {
-      padding: 10px;
-      width: 80%;
+      padding: 14px;
+      width: 90%;
       max-width: 500px;
-      margin: 10px 0;
+      margin: 20px 0;
       border: 1px solid #ccc;
-      border-radius: 4px;
+      border-radius: 8px;
+      font-size: 16px;
+      box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);
     }
 
     button {
-      padding: 10px 20px;
+      padding: 12px 28px;
       font-size: 16px;
       background-color: #007BFF;
       color: white;
       border: none;
-      border-radius: 4px;
+      border-radius: 8px;
       cursor: pointer;
+      transition: background-color 0.3s ease;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    button:hover {
+      background-color: #0056b3;
     }
 
     #status {
@@ -66,16 +79,27 @@
       display: none;
     }
 
-    #status .loading-text {
-      color: #555;
+    .loading-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
       font-weight: bold;
-      animation: fade 1.5s infinite;
+      color: #555;
     }
 
-    @keyframes fade {
-      0% { opacity: 0.2; }
-      50% { opacity: 1; }
-      100% { opacity: 0.2; }
+    .loading-spinner {
+      width: 20px;
+      height: 20px;
+      border: 3px solid #ccc;
+      border-top: 3px solid #007BFF;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
     }
 
     .seo-section {
@@ -84,6 +108,7 @@
       background-color: #f7f7f7;
       border-top: 1px solid #ddd;
       text-align: left;
+      border-radius: 12px;
     }
 
     .seo-section h2 {
@@ -98,12 +123,8 @@
       color: #333;
     }
 
-    .seo-section ul {
+    .seo-section ul, .seo-section ol {
       margin: 10px 0 20px 20px;
-    }
-
-    .seo-section ol {
-      margin-left: 20px;
     }
   </style>
 </head>
@@ -120,10 +141,14 @@
     <p>Paste your YouTube URL below to convert it to MP3:</p>
 
     <input type="text" id="urlInput" placeholder="Enter YouTube URL" />
+    <br>
     <button onclick="downloadMp3()">Download MP3</button>
 
     <div id="status">
-      <p class="loading-text">Processing...</p>
+      <div class="loading-container">
+        <div class="loading-spinner"></div>
+        <span>Processing...</span>
+      </div>
     </div>
 
     <section class="seo-section">
