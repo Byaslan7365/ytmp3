@@ -3,45 +3,65 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>YT MP3 Downloader</title>
-  <link rel="stylesheet" href="css/styles.css" />
+  <meta name="description" content="Convert YouTube to MP3 instantly. Fast, free, high-quality YouTube MP3 downloader with no registration needed.">
+  <title>YouTube to MP3 Converter</title>
+  <link rel="stylesheet" href="css/styles.css"/>
 </head>
 <body>
   <div class="container">
-    <h1>YouTube to MP3</h1>
-    <p>Paste a YouTube video URL and download the MP3</p>
-    
-    <form id="downloadForm">
-      <input type="text" id="youtubeUrl" placeholder="Enter YouTube URL" required />
-      <button type="submit" id="downloadBtn">Download MP3</button>
-    </form>
-    
-    <div id="status" class="hidden">
-      <div class="loader"></div>
-      <span>Preparing your download...</span>
-    </div>
+    <h1>YouTube to MP3 Converter</h1>
+    <p>Paste the YouTube URL below to download the audio as MP3.</p>
+    <input type="text" id="youtubeUrl" placeholder="Enter YouTube URL">
+    <button id="downloadBtn">Download MP3</button>
+    <div id="status" style="display: none;">Converting... Please wait</div>
   </div>
 
-  <script>
-    document.getElementById("downloadForm").addEventListener("submit", function(e) {
-      e.preventDefault();
-      const url = document.getElementById("youtubeUrl").value.trim();
-      const status = document.getElementById("status");
+  <section style="max-width: 800px; margin: 40px auto; padding: 20px; text-align: center;">
+    <h2>Convert YouTube Videos to MP3 – Fast, Free, and High-Quality</h2>
+    <p>
+      Looking for a reliable YouTube to MP3 converter? Our free online tool allows you to effortlessly convert YouTube videos into high-quality MP3 files. Whether you're aiming to download music, podcasts, or any audio content, our service ensures a seamless experience without the need for registration or software installation.
+    </p>
+    <h3>Key Features:</h3>
+    <ul style="text-align: left;">
+      <li><strong>Unlimited Conversions:</strong> Convert as many YouTube videos as you like.</li>
+      <li><strong>High-Quality Audio:</strong> Download MP3 files in various bitrates, including 128kbps and 320kbps.</li>
+      <li><strong>User-Friendly Interface:</strong> Simple and intuitive design for easy navigation.</li>
+      <li><strong>No Sign-Up Required:</strong> Access all features without creating an account.</li>
+      <li><strong>Compatible Across Devices:</strong> Works smoothly on desktops, tablets, and mobile phones.</li>
+    </ul>
+    <h3>How to Use:</h3>
+    <ol style="text-align: left;">
+      <li>Paste the YouTube video URL into the input field.</li>
+      <li>Click the "Download MP3" button.</li>
+      <li>Your MP3 file will be ready for download in moments.</li>
+    </ol>
+    <p><strong>Popular Keywords:</strong> YouTube MP3 converter, free MP3 downloader, convert YouTube to MP3, online audio converter, high-quality MP3 download, YouTube audio extractor, fast MP3 converter.</p>
+    <p>Experience the convenience of downloading your favorite YouTube content in MP3 format today!</p>
+  </section>
 
-      if (!url) {
-        alert("Please enter a valid YouTube URL.");
+  <script>
+    const downloadBtn = document.getElementById("downloadBtn");
+    const statusDiv = document.getElementById("status");
+
+    downloadBtn.addEventListener("click", () => {
+      const url = document.getElementById("youtubeUrl").value.trim();
+      if (url === "") {
+        alert("Please enter a YouTube URL.");
         return;
       }
 
-      status.classList.remove("hidden");
-
-      const encodedUrl = encodeURIComponent(url);
-      const downloadLink = `https://ytmp3.herokuapp.com/mp3/${encodedUrl}`;
+      statusDiv.style.display = "block";
+      statusDiv.style.opacity = 0;
+      statusDiv.innerText = "Converting... Please wait";
 
       setTimeout(() => {
-        status.classList.add("hidden");
-        window.open(downloadLink, "_blank");
-      }, 2500);
+        statusDiv.style.transition = "opacity 0.5s ease";
+        statusDiv.style.opacity = 1;
+
+        setTimeout(() => {
+          window.location.href = "https://ytmp3.herokuapp.com/mp3/" + encodeURIComponent(url);
+        }, 1000);
+      }, 300);
     });
   </script>
 </body>
