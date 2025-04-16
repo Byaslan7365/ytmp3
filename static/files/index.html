@@ -1,55 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>YTMP3 Downloader</title>
-  <link rel="stylesheet" href="css/styles.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>YT MP3 Downloader</title>
+  <link rel="stylesheet" href="css/styles.css" />
 </head>
 <body>
   <div class="container">
-    <h1>YTMP3 Downloader</h1>
-    <p>Enter a YouTube URL to convert it to MP3</p>
-    <input type="text" id="urlInput" placeholder="Paste YouTube link here">
-    <button id="downloadBtn">Download MP3</button>
+    <h1>YouTube to MP3</h1>
+    <p>Paste a YouTube video URL and download the MP3</p>
+    
+    <form id="downloadForm">
+      <input type="text" id="youtubeUrl" placeholder="Enter YouTube URL" required />
+      <button type="submit">Download MP3</button>
+    </form>
+    
     <div id="status"></div>
   </div>
 
   <script>
-    const btn = document.getElementById('downloadBtn');
-    const statusText = document.getElementById('status');
-
-    function showStatus(message, color) {
-      statusText.innerText = message;
-      statusText.style.color = color;
-      statusText.style.opacity = 1;
-
-      setTimeout(() => {
-        statusText.style.opacity = 0;
-      }, 3000);
-    }
-
-    btn.addEventListener('click', () => {
-      const url = document.getElementById('urlInput').value.trim();
-      const youtubeRegex = /^(https?\:\/\/)?(www\.youtube\.com|youtu\.?be)\/.+$/;
+    document.getElementById("downloadForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+      const url = document.getElementById("youtubeUrl").value.trim();
+      const status = document.getElementById("status");
 
       if (!url) {
-        showStatus('Please enter a YouTube URL.', 'red');
+        status.textContent = "Please enter a valid URL.";
         return;
       }
 
-      if (!youtubeRegex.test(url)) {
-        showStatus('Invalid YouTube URL.', 'red');
-        return;
-      }
+      status.className = "loading";
 
-      showStatus('Redirecting to download...', 'green');
+      const encodedUrl = encodeURIComponent(url);
+      const downloadLink = `https://ytmp3.herokuapp.com/mp3/${encodedUrl}`;
 
-      const encodedURL = encodeURIComponent(url);
-      const apiURL = `https://ytmp3.herokuapp.com/mp3/${encodedURL}`;
       setTimeout(() => {
-        window.open(apiURL, '_blank');
-      }, 1000);
+        status.className = "";
+        window.open(downloadLink, "_blank");
+      }, 1500);
     });
   </script>
 </body>
