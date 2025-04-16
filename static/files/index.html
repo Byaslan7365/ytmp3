@@ -1,33 +1,56 @@
-<script>
-  const btn = document.getElementById('downloadBtn');
-  const statusText = document.getElementById('status');
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>YTMP3 Downloader</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <div class="container">
+    <h1>YTMP3 Downloader</h1>
+    <p>Enter a YouTube URL to convert it to MP3</p>
+    <input type="text" id="urlInput" placeholder="Paste YouTube link here">
+    <button id="downloadBtn">Download MP3</button>
+    <div id="status"></div>
+  </div>
 
-  btn.addEventListener('click', () => {
-    const url = document.getElementById('urlInput').value.trim();
+  <script>
+    const btn = document.getElementById('downloadBtn');
+    const statusText = document.getElementById('status');
 
-    // Temel geçerli URL kontrolü
-    const youtubeRegex = /^(https?\:\/\/)?(www\.youtube\.com|youtu\.?be)\/.+$/;
+    function showStatus(message, color) {
+      statusText.innerText = message;
+      statusText.style.color = color;
+      statusText.style.opacity = 1;
 
-    if (!url) {
-      statusText.style.color = "red";
-      statusText.innerText = 'Please enter a YouTube URL.';
-      return;
+      setTimeout(() => {
+        statusText.style.opacity = 0;
+      }, 3000);
     }
 
-    if (!youtubeRegex.test(url)) {
-      statusText.style.color = "red";
-      statusText.innerText = 'Invalid YouTube URL.';
-      return;
-    }
+    btn.addEventListener('click', () => {
+      const url = document.getElementById('urlInput').value.trim();
+      const youtubeRegex = /^(https?\:\/\/)?(www\.youtube\.com|youtu\.?be)\/.+$/;
 
-    statusText.style.color = "green";
-    statusText.innerText = 'Redirecting to download...';
+      if (!url) {
+        showStatus('Please enter a YouTube URL.', 'red');
+        return;
+      }
 
-    const encodedURL = encodeURIComponent(url);
-    const apiURL = `https://ytmp3.herokuapp.com/mp3/${encodedURL}`;
-    setTimeout(() => {
-      window.open(apiURL, '_blank');
-      statusText.innerText = '';
-    }, 1000);
-  });
-</script>
+      if (!youtubeRegex.test(url)) {
+        showStatus('Invalid YouTube URL.', 'red');
+        return;
+      }
+
+      showStatus('Redirecting to download...', 'green');
+
+      const encodedURL = encodeURIComponent(url);
+      const apiURL = `https://ytmp3.herokuapp.com/mp3/${encodedURL}`;
+      setTimeout(() => {
+        window.open(apiURL, '_blank');
+      }, 1000);
+    });
+  </script>
+</body>
+</html>
