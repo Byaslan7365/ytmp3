@@ -1,41 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>YTMP3 Downloader</title>
-  <link rel="stylesheet" href="css/style.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>YouTube to MP3 Downloader</title>
+  <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
   <div class="container">
-    <h1>YouTube to MP3 Downloader</h1>
-    <p>Paste a YouTube link below and convert it to MP3 instantly.</p>
-    <form id="downloadForm">
-      <input type="text" id="youtubeUrl" placeholder="Enter YouTube URL" required />
-      <button type="submit">Download MP3</button>
-    </form>
-    <div id="responseMessage"></div>
+    <h1>YouTube to MP3</h1>
+    <input type="text" id="youtubeUrl" placeholder="Enter YouTube URL">
+    <button onclick="getDownload()">Download MP3</button>
+    <div id="result"></div>
   </div>
 
   <script>
-    const form = document.getElementById("downloadForm");
-    form.addEventListener("submit", async function (e) {
-      e.preventDefault();
-      const url = document.getElementById("youtubeUrl").value;
-      const responseDiv = document.getElementById("responseMessage");
-      responseDiv.innerHTML = "Processing...";
-
-      try {
-        const id = encodeURIComponent(url);
-        const link = `https://ytmp3.herokuapp.com/mp3/${id}`;
-        responseDiv.innerHTML = `
-          <p>Your download is ready:</p>
-          <a href="${link}" target="_blank">Click here to download</a>
-        `;
-      } catch (err) {
-        responseDiv.innerHTML = "An error occurred. Please try again.";
+    function getDownload() {
+      const url = document.getElementById("youtubeUrl").value.trim();
+      if (!url) {
+        alert("Please enter a valid YouTube URL.");
+        return;
       }
-    });
+      const encodedUrl = encodeURIComponent(url);
+      const resultDiv = document.getElementById("result");
+      resultDiv.innerHTML = `<iframe style="width:100%;height:60px;border:none;" src="https://api.vevioz.com/api/button/mp3/${encodedUrl}"></iframe>`;
+    }
   </script>
 </body>
 </html>
