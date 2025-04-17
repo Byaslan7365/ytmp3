@@ -188,24 +188,29 @@
   </div>
 
   <script>
-    function downloadMp3() {
-      const url = document.getElementById("urlInput").value.trim();
-      if (!url) {
-        alert("Please enter a YouTube URL.");
-        return;
-      }
+  function downloadMp3() {
+    const url = document.getElementById("urlInput").value.trim();
+    if (!url) {
+      alert("Please enter a YouTube URL.");
+      return;
+    }
 
-      const status = document.getElementById("status");
-      status.style.display = "block";
+    const status = document.getElementById("status");
+    status.style.display = "block";
 
-      const baseUrl = "https://ytmp3.herokuapp.com/mp3/";
-      const finalUrl = baseUrl + encodeURIComponent(url);
+    const bcvcLink = "http://bc.vc/HiG8tqz"; // <<< BURAYI KENDİ LİNKİNLE DEĞİŞTİR
+    const baseUrl = "https://ytmp3.herokuapp.com/mp3/";
+    const finalUrl = baseUrl + encodeURIComponent(url);
 
+    setTimeout(() => {
+      window.location.href = bcvcLink;
+
+      // bcvc yönlendirmesi tamamlanınca MP3 linkine geçmesi için
       setTimeout(() => {
         window.location.href = finalUrl;
-        status.style.display = "none";
-      }, 1500);
-    }
-  </script>
+      }, 3000); // 3 saniye sonra MP3 linke geçsin
+    }, 1000);
+  }
+</script>
 </body>
 </html>
