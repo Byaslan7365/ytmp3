@@ -1,242 +1,36 @@
 <!DOCTYPE html>
 <html lang="tr">
-<head>
+  <head>
     <meta charset="UTF-8">
-    <title>PerişBET</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style>
-        body {
-            margin: 0;
-            font-family: 'Arial', sans-serif;
-            background-color: #121212;
-            color: #fff;
-        }
-        header {
-            background-color: #1f1f1f;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 15px 20px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.7);
-            position: relative;
-        }
-        .logo {
-            font-size: 28px;
-            font-weight: bold;
-            color: #f1c40f;
-        }
-        .user-info {
-            display: flex;
-            gap: 20px;
-            align-items: center;
-        }
-        .user-info div {
-            cursor: pointer;
-            font-size: 18px;
-        }
-        .profile-menu {
-            position: absolute;
-            right: 20px;
-            top: 60px;
-            background: #2c2c2c;
-            border: 1px solid #444;
-            padding: 10px;
-            display: none;
-            border-radius: 5px;
-        }
-        .profile-menu a {
-            color: #fff;
-            text-decoration: none;
-            display: block;
-            padding: 5px 0;
-        }
-        main {
-            padding: 20px;
-            text-align: center;
-        }
-        .match {
-            background: #1f1f1f;
-            margin: 20px auto;
-            padding: 20px;
-            border-radius: 10px;
-            width: 90%;
-            max-width: 600px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.5);
-            cursor: pointer;
-            transition: transform 0.2s;
-        }
-        .match:hover {
-            transform: scale(1.02);
-        }
-        .match h2 {
-            margin: 0 0 10px;
-        }
-        .match p {
-            margin: 5px 0;
-            font-size: 16px;
-        }
-        .bet-slip {
-            position: fixed;
-            bottom: 70px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: #2c2c2c;
-            padding: 20px;
-            border-radius: 10px;
-            display: none;
-            width: 90%;
-            max-width: 400px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.7);
-        }
-        .bet-slip button {
-            background: #f1c40f;
-            color: #000;
-            border: none;
-            padding: 10px 20px;
-            margin-top: 10px;
-            font-weight: bold;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        footer {
-            background-color: #1f1f1f;
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-            display: flex;
-            justify-content: space-around;
-            padding: 15px 0;
-            box-shadow: 0 -2px 5px rgba(0,0,0,0.7);
-        }
-        footer a {
-            color: #f1c40f;
-            text-decoration: none;
-            font-size: 18px;
-        }
-        footer a:hover {
-            text-decoration: underline;
-        }
-        /* Login Popup */
-        .login-popup {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background: #1f1f1f;
-            padding: 30px;
-            border-radius: 10px;
-            display: none;
-            box-shadow: 0 0 10px rgba(0,0,0,0.8);
-        }
-        .login-popup input {
-            width: 100%;
-            padding: 10px;
-            margin: 10px 0;
-            border: none;
-            border-radius: 5px;
-        }
-        .login-popup button {
-            background: #f1c40f;
-            color: #000;
-            border: none;
-            padding: 10px;
-            width: 100%;
-            font-weight: bold;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-    </style>
-</head>
-<body>
+    <title>CanlıMaçİzliyoz</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <header>
+	  <h1>CanlıMaçİzliyoz</h1>
+	  <div id="saat"></div>
+    </header>
 
-<header>
-    <div class="logo">PerişBET</div>
-    <div class="user-info">
-        <div id="balance">Bakiye: 1000₺</div>
-        <div id="profile">Profil</div>
-    </div>
-    <div class="profile-menu" id="profileMenu">
-        <a href="#" onclick="openLogin()">Giriş Yap</a>
-        <a href="#">Çıkış</a>
-    </div>
-</header>
+    <main>
+	  <div class="match">
+		<h2>Galatasaray vs Fenerbahçe</h2>
+		<button onclick="window.location.href='http://bc.vc/k9aVHqe'">İzle</button>
+	  </div>
+	  <div class="match">
+		<h2>Real Madrid vs Barcelona</h2>
+		<button onclick="window.location.href='http://bc.vc/k9aVHqe'">İzle</button>
+	  </div>
+	  <div class="match">
+		<h2>Manchester City vs Liverpool</h2>
+		<button onclick="window.location.href='http://bc.vc/k9aVHqe'">İzle</button>
+	  </div>
+    </main>
 
-<main>
-    <div class="match" onclick="openBetSlip('Fenerbahçe vs Galatasaray', '1.50')">
-        <h2>Fenerbahçe vs Galatasaray</h2>
-        <p>1.50 - 3.20 - 2.70</p>
-    </div>
-    <div class="match" onclick="openBetSlip('Beşiktaş vs Trabzonspor', '1.80')">
-        <h2>Beşiktaş vs Trabzonspor</h2>
-        <p>1.80 - 3.00 - 2.50</p>
-    </div>
-    <div class="match" onclick="openBetSlip('Manchester United vs Liverpool', '2.10')">
-        <h2>Manchester United vs Liverpool</h2>
-        <p>2.10 - 3.40 - 2.00</p>
-    </div>
-</main>
+    <footer>
+	  <p>Tüm hakları saklıdır © 2025</p>
+    </footer>
 
-<div class="bet-slip" id="betSlip">
-    <h3 id="betMatch">Maç Bilgisi</h3>
-    <p id="betOdds">Oran: 0</p>
-    <button onclick="placeBet()">Bahis Yap</button>
-</div>
-
-<footer>
-    <a href="#">Sweet Bonanza</a>
-    <a href="#">Canlı Destek</a>
-    <a href="#">Casinolar</a>
-    <a href="#">Slotlar</a>
-</footer>
-
-<!-- Login Popup -->
-<div class="login-popup" id="loginPopup">
-    <h2>Giriş Yap</h2>
-    <input type="text" placeholder="Kullanıcı Adı">
-    <input type="password" placeholder="Şifre">
-    <button onclick="closeLogin()">Giriş</button>
-</div>
-
-<script>
-    const balanceDiv = document.getElementById('balance');
-    const profile = document.getElementById('profile');
-    const profileMenu = document.getElementById('profileMenu');
-    const betSlip = document.getElementById('betSlip');
-    const loginPopup = document.getElementById('loginPopup');
-    let balance = 1000;
-
-    profile.onclick = () => {
-        profileMenu.style.display = profileMenu.style.display === 'block' ? 'none' : 'block';
-    }
-
-    function openBetSlip(match, odds) {
-        document.getElementById('betMatch').innerText = match;
-        document.getElementById('betOdds').innerText = "Oran: " + odds;
-        betSlip.style.display = 'block';
-    }
-
-    function placeBet() {
-        let randomWin = Math.random() < 0.5; // %50 şans
-        if (randomWin) {
-            balance += 100;
-            alert("Tebrikler! 100₺ kazandınız!");
-        } else {
-            balance -= 50;
-            alert("Kaybettiniz! 50₺ kaybettiniz!");
-        }
-        balanceDiv.innerText = "Bakiye: " + balance + "₺";
-        betSlip.style.display = 'none';
-    }
-
-    function openLogin() {
-        loginPopup.style.display = 'block';
-        profileMenu.style.display = 'none';
-    }
-
-    function closeLogin() {
-        loginPopup.style.display = 'none';
-    }
-</script>
-
-</body>
+    <script src="script.js"></script>
+  </body>
 </html>
